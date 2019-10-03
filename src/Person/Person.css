@@ -8,6 +8,19 @@
   text-align: center;
 }
 
+.person input {
+  width: 100%;
+}
+
 .person:hover {
   background: rgb(224, 149, 149)
+}
+
+@media (min-width: 500px) {
+  .person {
+    width: 450px;
+  }
+  .person input {
+    width: auto;
+  }
 }

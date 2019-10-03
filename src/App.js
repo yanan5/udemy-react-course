@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
-import "./App.css";
+import styles from "./App.css";
 
 class App extends Component {
   state = {
@@ -39,22 +39,10 @@ class App extends Component {
     const { persons, togglePerson } = this.state;
     let classes = [];
     if (persons.length <= 2) {
-      classes = ["orange"];
+      classes = [styles.orange];
     }
     if (persons.length <= 1) {
-      classes = ["red bold"];
-    }
-    const style = {
-      backgroundColor: "green",
-      color: "#fff",
-      font: "inherit",
-      border: "1px solid blue",
-      borderRadius: "5px",
-      cursor: "pointer",
-      padding: "8px"
-    };
-    if (togglePerson) {
-      style.backgroundColor = "red";
+      classes = [styles.red, styles.bold];
     }
     let Persons =
       persons.length > 0 ? (
@@ -71,10 +59,10 @@ class App extends Component {
         <p className={classes.join(" ")}>No Data to Display</p>
       );
     return (
-        <div className="App">
+        <div className={styles.App}>
           <h1>I am new to react</h1>
           <p className={classes.join(" ")}>This is really working</p>
-          <button style={style} onClick={this.togglePersonHandler}>
+          <button className={togglePerson ? styles.Red: null} onClick={this.togglePersonHandler}>
             Toggle Person
           </button>
           {togglePerson && <div>{Persons}</div>}

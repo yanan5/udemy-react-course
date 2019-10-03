@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
-import Radium, { StyleRoot } from "radium";
 import "./App.css";
 
 class App extends Component {
@@ -52,18 +51,10 @@ class App extends Component {
       border: "1px solid blue",
       borderRadius: "5px",
       cursor: "pointer",
-      padding: "8px",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "#000"
-      }
+      padding: "8px"
     };
     if (togglePerson) {
       style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "#000"
-      };
     }
     let Persons =
       persons.length > 0 ? (
@@ -80,7 +71,6 @@ class App extends Component {
         <p className={classes.join(" ")}>No Data to Display</p>
       );
     return (
-      <StyleRoot>
         <div className="App">
           <h1>I am new to react</h1>
           <p className={classes.join(" ")}>This is really working</p>
@@ -89,9 +79,8 @@ class App extends Component {
           </button>
           {togglePerson && <div>{Persons}</div>}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;

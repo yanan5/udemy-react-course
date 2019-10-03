@@ -29,7 +29,7 @@ class App extends Component {
   changeHandler = (e, id) => {
     const { persons: personsFromState } = this.state;
     const personIndex = personsFromState.findIndex(p => p.id === id);
-    const person = { ...personsFromState[personIndex], name: e.target.value };
+    const person = { ...personsFromState[personIndex], name: e.input.value };
     const persons = personsFromState.slice();
     persons[personIndex] = person;
     this.setState({ persons });

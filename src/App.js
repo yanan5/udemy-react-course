@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
 import styles from "./App.css";
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -47,13 +48,15 @@ class App extends Component {
     let Persons =
       persons.length > 0 ? (
         persons.map((person, index) => (
-          <Person
-            key={person.id}
-            click={() => this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age}
-            change={e => this.changeHandler(e, person.id)}
-          />
+          <ErrorBoundary 
+            key={person.id}>
+            <Person
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              change={e => this.changeHandler(e, person.id)}
+            />
+          </ErrorBoundary>
         ))
       ) : (
         <p className={classes.join(" ")}>No Data to Display</p>

@@ -5,14 +5,31 @@ import Cockpit from "../components/Cockpit/Cockpit";
 import styles from "./App.css";
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: "sadf", name: "Arul Malar", age: 4 },
-      { id: "23jk", name: "Ilamaran", age: 3 },
-      { id: "werf", name: "Shobana", age: 33 }
-    ],
-    togglePerson: false
-  };
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor called");
+    this.state = {
+      persons: [
+        { id: "sadf", name: "Arul Malar", age: 4 },
+        { id: "23jk", name: "Ilamaran", age: 3 },
+        { id: "werf", name: "Shobana", age: 33 }
+      ],
+      togglePerson: false
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps called", props, state);
+    return state;
+  }
+
+  componentWillMount() {
+    console.log("[App.js] componentWillMount called");
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount called");
+  }
 
   togglePersonHandler = () => {
     this.setState(state => ({
@@ -38,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render called");
     const { persons, togglePerson } = this.state;
 
     let PersonsList = (

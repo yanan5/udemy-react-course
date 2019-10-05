@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Cockpit.css";
 
 const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
+  console.log("[Cockpit.js] called");
   let classes = [];
   if (persons.length <= 2) {
     classes = [styles.orange];

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Cockpit.css";
 
-const Cockpit = ({ persons, togglePerson, togglePersonHandler }) => {
+const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
   let classes = [];
   if (persons.length <= 2) {
     classes = [styles.orange];
@@ -11,7 +11,7 @@ const Cockpit = ({ persons, togglePerson, togglePersonHandler }) => {
   }
   return (
     <div className={styles.Cockpit}>
-      <h1>I am new to react</h1>
+      <h1>{title}</h1>
       <p className={classes.join(" ")}>This is really working</p>
       <button
         className={togglePerson ? styles.Red : null}

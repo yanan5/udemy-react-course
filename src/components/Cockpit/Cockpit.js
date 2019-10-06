@@ -2,13 +2,34 @@ import React, { useEffect } from "react";
 import styles from "./Cockpit.css";
 
 const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
-  console.log("[Cockpit.js] called");
   useEffect(() => {
-    console.log("[Cockpit.js] useEffect called - componentDidMount");
+    const timerId = setTimeout(() => {
+      console.log("[Cockpit.js] useEffect called - componentDidMount");
+    }, 1000);
+    return () => {
+      clearTimeout(timerId);
+      console.log("[Cockpit.js] return from componentDidMount useEffect");
+    };
   }, []);
   useEffect(() => {
-    console.log("[Cockpit.js] useEffect called - componentDidUpdate");
+    const timeId = setTimeout(() => {
+      console.log("[Cockpit.js] useEffect called - componentDidUpdate");
+    }, 1000);
+    return () => {
+      clearTimeout(timeId);
+      console.log("[Cockpit.js] return from componentDidUpdate useEffect");
+    };
   }, [persons]);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      console.log("[Cockpit.js] useEffect called - ALWAYS");
+    }, 1000);
+    return () => {
+      clearTimeout(timerId);
+      console.log("[Cockpit.js] return from ALWAYS useEffect");
+    };
+  });
+  console.log("[Cockpit.js] called");
   let classes = [];
   if (persons.length <= 2) {
     classes = [styles.orange];

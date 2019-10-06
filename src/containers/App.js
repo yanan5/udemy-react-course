@@ -14,7 +14,8 @@ class App extends Component {
         { id: "23jk", name: "Ilamaran", age: 3 },
         { id: "werf", name: "Shobana", age: 33 }
       ],
-      togglePerson: false
+      togglePerson: false,
+      toggleCockPit: true
     };
   }
 
@@ -65,7 +66,7 @@ class App extends Component {
 
   render() {
     console.log("[App.js] render called");
-    const { persons, togglePerson } = this.state;
+    const { persons, togglePerson, toggleCockPit } = this.state;
 
     let PersonsList = (
       <Persons
@@ -76,12 +77,13 @@ class App extends Component {
     );
     return (
       <div className={styles.App}>
-        <Cockpit
+        <button onClick={() => this.setState({toggleCockPit: !this.state.toggleCockPit})}>Toggle CockPit</button>
+        {toggleCockPit && <Cockpit
           title={this.props.appTitle}
           persons={persons}
           togglePerson={togglePerson}
           togglePersonHandler={this.togglePersonHandler}
-        />
+        />}
         {togglePerson && PersonsList}
       </div>
     );

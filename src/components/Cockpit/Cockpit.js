@@ -3,29 +3,22 @@ import styles from "./Cockpit.css";
 
 const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      console.log("[Cockpit.js] useEffect called - componentDidMount");
-    }, 1000);
+    console.log("[Cockpit.js] useEffect called - componentDidMount");
     return () => {
-      clearTimeout(timerId);
       console.log("[Cockpit.js] return from componentDidMount useEffect");
     };
   }, []);
   useEffect(() => {
-    const timeId = setTimeout(() => {
-      console.log("[Cockpit.js] useEffect called - componentDidUpdate");
-    }, 1000);
+    console.log("[Cockpit.js] useEffect called - componentDidUpdate");
+
     return () => {
-      clearTimeout(timeId);
       console.log("[Cockpit.js] return from componentDidUpdate useEffect");
     };
   }, [persons]);
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      console.log("[Cockpit.js] useEffect called - ALWAYS");
-    }, 1000);
+    console.log("[Cockpit.js] useEffect called - ALWAYS");
+
     return () => {
-      clearTimeout(timerId);
       console.log("[Cockpit.js] return from ALWAYS useEffect");
     };
   });

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./Cockpit.css";
 
-const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
+const Cockpit = ({ title, personsLength, togglePerson, togglePersonHandler }) => {
   useEffect(() => {
     console.log("[Cockpit.js] useEffect called - componentDidMount");
     return () => {
@@ -14,7 +14,7 @@ const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
     return () => {
       console.log("[Cockpit.js] return from componentDidUpdate useEffect");
     };
-  }, [persons]);
+  }, [personsLength]);
   useEffect(() => {
     console.log("[Cockpit.js] useEffect called - ALWAYS");
 
@@ -24,10 +24,10 @@ const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
   });
   console.log("[Cockpit.js] called");
   let classes = [];
-  if (persons.length <= 2) {
+  if (personsLength <= 2) {
     classes = [styles.orange];
   }
-  if (persons.length <= 1) {
+  if (personsLength <= 1) {
     classes = [styles.red, styles.bold];
   }
   return (
@@ -44,4 +44,4 @@ const Cockpit = ({ title, persons, togglePerson, togglePersonHandler }) => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);

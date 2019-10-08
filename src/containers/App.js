@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import WithClassesCurried from '../hoc/WithClassesCurried';
+import Auxillary from '../hoc/Auxillary';
+
 
 import styles from "./App.css";
 
@@ -76,7 +79,7 @@ class App extends Component {
       />
     );
     return (
-      <div className={styles.App}>
+      <Auxillary>
         <button onClick={() => this.setState({toggleCockPit: !this.state.toggleCockPit})}>Toggle CockPit</button>
         {toggleCockPit && <Cockpit
           title={this.props.appTitle}
@@ -85,9 +88,9 @@ class App extends Component {
           togglePersonHandler={this.togglePersonHandler}
         />}
         {togglePerson && PersonsList}
-      </div>
+      </Auxillary>
     );
   }
 }
 
-export default App;
+export default WithClassesCurried(App, styles.App);

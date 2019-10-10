@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Cockpit.css";
 
 const Cockpit = ({ title, personsLength, togglePerson, togglePersonHandler }) => {
+  const buttonRef = useRef(null);
   useEffect(() => {
     console.log("[Cockpit.js] useEffect called - componentDidMount");
+    setTimeout(() => buttonRef.current.click(), 2000);
     return () => {
       console.log("[Cockpit.js] return from componentDidMount useEffect");
     };
@@ -35,6 +37,7 @@ const Cockpit = ({ title, personsLength, togglePerson, togglePersonHandler }) =>
       <h1>{title}</h1>
       <p className={classes.join(" ")}>This is really working</p>
       <button
+        ref={buttonRef}
         className={togglePerson ? styles.Red : null}
         onClick={togglePersonHandler}
       >

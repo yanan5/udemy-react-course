@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Cockpit.css";
 
-const Cockpit = ({ title, personsLength, togglePerson, togglePersonHandler }) => {
+const Cockpit = ({
+  title,
+  personsLength,
+  togglePerson,
+  togglePersonHandler,
+  authenticateHandler,
+  isAuthenticated
+}) => {
   const buttonRef = useRef(null);
   useEffect(() => {
     console.log("[Cockpit.js] useEffect called - componentDidMount");
@@ -42,6 +49,13 @@ const Cockpit = ({ title, personsLength, togglePerson, togglePersonHandler }) =>
         onClick={togglePersonHandler}
       >
         Toggle Person
+      </button>
+      <button
+        disabled={!togglePerson}
+        className={styles["ml-10"]}
+        onClick={authenticateHandler}
+      >
+        {isAuthenticated ? "Log Out" : "Log In"}
       </button>
     </div>
   );

@@ -7,7 +7,9 @@
 .bold {  
   font-weight: bold;
 }
-
+.ml-10 {
+  margin-left: 10px;
+}
 .Cockpit button {
   border: 1px solid blue;
   cursor: pointer;
@@ -26,4 +28,12 @@
 .Cockpit button.Red:hover {
   background-color: salmon;
   color: black;
+}
+.Cockpit button:disabled {
+  background-color: grey;
+}
+.Cockpit button:disabled:hover {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
 }

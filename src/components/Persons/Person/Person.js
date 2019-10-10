@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import styles from "./Person.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class Person extends Component {
   render() {
-    const { name, age, children, click, change } = this.props;
+    const { name, age, children, click, change, isAuth } = this.props;
     return (
       <div className={styles.person} onClick={click}>
+        <p>{isAuth ? "Authenticated" : "Please Log In"}</p>
         <p>
           I'm a {name} and I am {age} years old!.{" "}
           {children && `Hobby: ${children}`}
@@ -28,6 +29,6 @@ PropTypes.propTypes = {
   children: PropTypes.object,
   click: PropTypes.func,
   change: PropTypes.func
-}
+};
 
 export default Person;

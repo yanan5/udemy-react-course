@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
-import WithClassesCurried from '../hoc/WithClassesCurried';
-import Auxillary from '../hoc/Auxillary';
-
+import WithClassesCurried from "../hoc/WithClassesCurried";
+import Auxillary from "../hoc/Auxillary";
 
 import styles from "./App.css";
 
@@ -18,7 +17,8 @@ class App extends Component {
         { id: "werf", name: "Shobana", age: 33 }
       ],
       togglePerson: false,
-      toggleCockPit: true
+      toggleCockPit: true,
+      isAuthenticated: false
     };
   }
 
@@ -67,26 +67,47 @@ class App extends Component {
     this.setState({ persons });
   };
 
+  handleAuthentication = () =>
+    this.setState(state => ({
+      isAuthenticated: !state.isAuthenticated
+    }));
+
   render() {
     console.log("[App.js] render called");
-    const { persons, togglePerson, toggleCockPit } = this.state;
+    const {
+      persons,
+      togglePerson,
+      toggleCockPit,
+      isAuthenticated
+    } = this.state;
 
     let PersonsList = (
       <Persons
         persons={persons}
         deletePersonHandler={this.deletePersonHandler}
         changeHandler={this.changeHandler}
+        isAuthenticated={isAuthenticated}
       />
     );
     return (
       <Auxillary>
-        <button onClick={() => this.setState({toggleCockPit: !this.state.toggleCockPit})}>Toggle CockPit</button>
-        {toggleCockPit && <Cockpit
-          title={this.props.appTitle}
-          personsLength={persons.length}
-          togglePerson={togglePerson}
-          togglePersonHandler={this.togglePersonHandler}
-        />}
+        <button
+          onClick={() =>
+            this.setState({ toggleCockPit: !this.state.toggleCockPit })
+          }
+        >
+          Toggle CockPit
+        </button>
+        {toggleCockPit && (
+          <Cockpit
+            title={this.props.appTitle}
+            personsLength={persons.length}
+            togglePerson={togglePerson}
+            togglePersonHandler={this.togglePersonHandler}
+            authenticateHandler={this.handleAuthentication}
+            isAuthenticated={isAuthenticated}
+          />
+        )}
         {togglePerson && PersonsList}
       </Auxillary>
     );

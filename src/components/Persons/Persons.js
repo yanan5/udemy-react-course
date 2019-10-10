@@ -26,7 +26,12 @@ class Persons extends PureComponent {
   }
 
   render() {
-    const { persons, deletePersonHandler, changeHandler } = this.props;
+    const {
+      persons,
+      deletePersonHandler,
+      changeHandler,
+      isAuthenticated
+    } = this.props;
     return persons.length > 0 ? (
       persons.map((person, index) => (
         <Person
@@ -35,6 +40,7 @@ class Persons extends PureComponent {
           name={person.name}
           age={person.age}
           change={e => changeHandler(e, person.id)}
+          isAuth={isAuthenticated}
         />
       ))
     ) : (

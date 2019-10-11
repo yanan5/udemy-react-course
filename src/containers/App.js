@@ -3,6 +3,7 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import WithClassesCurried from "../hoc/WithClassesCurried";
 import Auxillary from "../hoc/Auxillary";
+import AuthContext from "../context/authContext";
 
 import styles from "./App.css";
 
@@ -86,7 +87,6 @@ class App extends Component {
         persons={persons}
         deletePersonHandler={this.deletePersonHandler}
         changeHandler={this.changeHandler}
-        isAuthenticated={isAuthenticated}
       />
     );
     return (
@@ -98,17 +98,22 @@ class App extends Component {
         >
           Toggle CockPit
         </button>
-        {toggleCockPit && (
-          <Cockpit
-            title={this.props.appTitle}
-            personsLength={persons.length}
-            togglePerson={togglePerson}
-            togglePersonHandler={this.togglePersonHandler}
-            authenticateHandler={this.handleAuthentication}
-            isAuthenticated={isAuthenticated}
-          />
-        )}
-        {togglePerson && PersonsList}
+        <AuthContext.Provider
+          value={{
+            isAuthenticated,
+            authenticateHandler: this.handleAuthentication
+          }}
+        >
+          {toggleCockPit && (
+            <Cockpit
+              title={this.props.appTitle}
+              personsLength={persons.length}
+              togglePerson={togglePerson}
+              togglePersonHandler={this.togglePersonHandler}
+            />
+          )}
+          {togglePerson && PersonsList}
+        </AuthContext.Provider>
       </Auxillary>
     );
   }

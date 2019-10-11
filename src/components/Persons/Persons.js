@@ -29,8 +29,7 @@ class Persons extends PureComponent {
     const {
       persons,
       deletePersonHandler,
-      changeHandler,
-      isAuthenticated
+      changeHandler
     } = this.props;
     return persons.length > 0 ? (
       persons.map((person, index) => (
@@ -40,7 +39,6 @@ class Persons extends PureComponent {
           name={person.name}
           age={person.age}
           change={e => changeHandler(e, person.id)}
-          isAuth={isAuthenticated}
         />
       ))
     ) : (

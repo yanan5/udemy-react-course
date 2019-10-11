@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import styles from "./Person.css";
 import PropTypes from "prop-types";
+import withAuthentication from "../../../hoc/withAuthentication";
 
 class Person extends Component {
   render() {
-    const { name, age, children, click, change, isAuth } = this.props;
+    const {
+      name,
+      age,
+      children,
+      click,
+      change,
+      context: { isAuthenticated }
+    } = this.props;
     return (
       <div className={styles.person} onClick={click}>
-        <p>{isAuth ? "Authenticated" : "Please Log In"}</p>
+        <p>{isAuthenticated ? "Authenticated" : "Please Log In"}</p>
         <p>
           I'm a {name} and I am {age} years old!.{" "}
           {children && `Hobby: ${children}`}
@@ -31,4 +39,4 @@ PropTypes.propTypes = {
   change: PropTypes.func
 };
 
-export default Person;
+export default withAuthentication(Person);

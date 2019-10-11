@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import styles from "./Cockpit.css";
 import AuthContext from "../../context/authContext";
 
@@ -9,6 +9,7 @@ const Cockpit = ({
   togglePersonHandler
 }) => {
   const buttonRef = useRef(null);
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     console.log("[Cockpit.js] useEffect called - componentDidMount");
     const timerId = setTimeout(() => buttonRef.current.click(), 2000);
@@ -50,17 +51,13 @@ const Cockpit = ({
       >
         Toggle Person
       </button>
-      <AuthContext.Consumer>
-        {({ authenticateHandler, isAuthenticated }) => (
-          <button
-            disabled={!togglePerson}
-            className={styles["ml-10"]}
-            onClick={authenticateHandler}
-          >
-            {isAuthenticated ? "Log Out" : "Log In"}
-          </button>
-        )}
-      </AuthContext.Consumer>
+      <button
+        disabled={!togglePerson}
+        className={styles["ml-10"]}
+        onClick={authContext.authenticateHandler}
+      >
+        {authContext.isAuthenticated ? "Log Out" : "Log In"}
+      </button>
     </div>
   );
 };

@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import styles from "./Person.css";
 import PropTypes from "prop-types";
-import withAuthentication from "../../../hoc/withAuthentication";
+import AuthContext from '../../../context/authContext'
 
 class Person extends Component {
+  static contextType = AuthContext;
   render() {
     const {
       name,
       age,
       children,
       click,
-      change,
-      context: { isAuthenticated }
+      change
     } = this.props;
     return (
       <div className={styles.person} onClick={click}>
-        <p>{isAuthenticated ? "Authenticated" : "Please Log In"}</p>
+        <p>{this.context.isAuthenticated ? "Authenticated" : "Please Log In"}</p>
         <p>
           I'm a {name} and I am {age} years old!.{" "}
           {children && `Hobby: ${children}`}
@@ -39,4 +39,4 @@ PropTypes.propTypes = {
   change: PropTypes.func
 };
 
-export default withAuthentication(Person);
+export default Person;
